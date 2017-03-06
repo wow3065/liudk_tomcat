@@ -15,7 +15,9 @@ import javax.management.remote.rmi.RMIServer;
 @Controller
 public class Index {
 
-    private RmiServer rmiServer;
+    @Autowired
+    RmiServer rmiServer;
+/*
     //注意，这个服务的代理要以注入的形式赋值给hello变量
     @Autowired
     public void setHello(RmiServer rmiServer) {
@@ -26,10 +28,17 @@ public class Index {
     //使用的rmi远程服务
         System.out.println(rmiServer.getUserName());
     }
+*/
 
-    @RequestMapping(method = RequestMethod.GET,value = "/")
+    @RequestMapping(method = RequestMethod.GET,value = "/name")
     @ResponseBody
     public String Index(){
         return rmiServer.getUserName();
+    }
+
+    @RequestMapping(method = RequestMethod.GET,value = "/age")
+    @ResponseBody
+    public int Age(){
+        return rmiServer.getUserAge();
     }
 }
